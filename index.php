@@ -5,31 +5,52 @@ $categories = ["Входящие", "Учеба", "Работа", "Домашни
 $index = 0;
 $num_count = count($categories);
 $task_list = [
-    ['task' => 'Собеседование в IT компании',
-        'date' => '01.12.2018',
-        'category' => 'Работа',
-        'status' => 'Нет'],
-    ['task' => 'Выполнить тестовое задание',
-        'date' => '25.12.2018',
-        'category' => 'Работа',
-        'status' => 'Нет'],
-    ['task' => 'Сделать задание первого раздела',
-        'date' => '21.12.2018',
-        'category' => 'Учеба',
-        'status' => 'Да'],
-    ['task' => 'Встреча с другом',
-        'date' => '22.12.2018',
-        'category' => 'Входящие',
-        'status' => 'Нет'],
-    ['task' => 'Купить корм для кота',
-        'date' => 'Нет',
-        'category' => 'Домашние дела',
-        'status' => 'Нет'],
-    ['task' => 'Заказать пиццу',
-        'date' => 'Нет',
-        'category' => 'Домашние дела',
-        'status' => 'Нет']
+    [
+        "task" => "Собеседование в IT компании",
+        "date" => "01.12.2018",
+        "category" => "Работа",
+        "status" => false
+    ],
+    [
+        "task" => "Выполнить тестовое задание",
+        "date" => "25.12.2018",
+        "category" => "Работа",
+        "status" => false
+    ],
+    [
+        "task" => "Сделать задание первого раздела",
+        "date" => "21.12.2018",
+        "category" => "Учеба",
+        "status" => true
+    ],
+    [
+        "task" => "Встреча с другом",
+        "date" => "22.12.2018",
+        "category" => "Входящие",
+        "status" => false
+    ],
+    [
+        "task" => "Купить корм для кота",
+        "date" => "",
+        "category" => "Домашние дела",
+        "status" => false
+    ],
+    [
+        "task" => "Заказать пиццу",
+        "date" => "",
+        "category" => "Домашние дела",
+        "status" => false
+    ]
 ];
+function count_project($task_list, $categories) {
+    $number = 0;
+    foreach ($task_list as $value) {
+        if ($value ["category"] === $categories) {
+            $number++;
+        }
+    }
+    return $number;
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,13 +94,12 @@ $task_list = [
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                        <?php while ($index < $num_count): ?>
+                        <?php for ($index = 0; $index < $num_count; $index++): ?>
                         <li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link" href="#"><?= $categories[$index]; ?></a>
-                            <?php $index = $index + 1; ?>
-                            <?php endwhile; ?>
-                            <span class="main-navigation__list-item-count">0</span>
+                            <span class="main-navigation__list-item-count"><?= count_project($task_list, $categories[$index]); ?></span>
                         </li>
+                        <?php endfor; ?>
                     </ul>
                 </nav>
 
@@ -107,23 +127,23 @@ $task_list = [
                     <label class="checkbox">
                         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
                         <input class="checkbox__input visually-hidden show_completed" type="checkbox"
-                               <?php if ($show_complete_tasks === 1): ?>checked<?php endif; ?>>
+                               <?= ($show_complete_tasks === 1 ? 'checked' :'' ) ?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
 
                 <table class="tasks">
-                    <?php foreach ($task_list as $key => $value): ?>
-                        <?php if ($value ['status'] == 'Нет') : ?>
+                    <?php foreach ($task_list as $value): ?>
+                        <?php if ($value ["status"] === false) : ?>
                             <tr class="tasks__item task">
                                 <td class="task__select">
                                     <label class="checkbox task__checkbox">
                                         <input class="checkbox__input visually-hidden task__checkbox" type="checkbox"
                                                value="1">
-                                        <span class="checkbox__text"><?= $value['task']; ?></span>
+                                        <span class="checkbox__text"><?= $value["task"]; ?></span>
                                     </label>
                                 </td>
-                                <td class="task__date"><?= $value['date']; ?></td>
+                                <td class="task__date"><?= $value["date"]; ?></td>
                                 <td class="task__controls"></td>
                             </tr>
                         <?php elseif ($show_complete_tasks === 1): ?>
@@ -132,10 +152,10 @@ $task_list = [
                                     <label class="checkbox task__checkbox">
                                         <input class="checkbox__input visually-hidden task__checkbox" type="checkbox"
                                                value="1">
-                                        <span class="checkbox__text"><?= $value['task']; ?></span>
+                                        <span class="checkbox__text"><?= $value["task"]; ?></span>
                                     </label>
                                 </td>
-                                <td class="task__date"><?= $value['date']; ?></td>
+                                <td class="task__date"><?= $value["date"]; ?></td>
                                 <td class="task__controls"></td>
                             </tr>
 
