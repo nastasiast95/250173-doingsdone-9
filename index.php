@@ -94,11 +94,11 @@ function count_project($task_list, $categories) {
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                        <?php for ($index = 0; $index < $num_count; $index++): ?>
-                        <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?= $categories[$index]; ?></a>
-                            <span class="main-navigation__list-item-count"><?= count_project($task_list, $categories[$index]); ?></span>
-                        </li>
+                        <?php for ($index = 0;$index < $num_count;$index++): ?>
+                            <li class="main-navigation__list-item">
+                                <a class="main-navigation__list-item-link" href="#"><?=$categories[$index]; ?></a>
+                                <span class="main-navigation__list-item-count"><?=count_project($task_list, $categories[$index]); ?></span>
+                            </li>
                         <?php endfor; ?>
                     </ul>
                 </nav>
@@ -127,7 +127,7 @@ function count_project($task_list, $categories) {
                     <label class="checkbox">
                         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
                         <input class="checkbox__input visually-hidden show_completed" type="checkbox"
-                               <?= ($show_complete_tasks === 1 ? 'checked' :'' ) ?>>
+                            <?=($show_complete_tasks === 1 ? 'checked' : '') ?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
