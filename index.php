@@ -9,7 +9,7 @@ $username = "Анастасия";
 $task_list = [
     [
         "task" => "Собеседование в IT компании",
-        "date" => "01.12.2018",
+        "date" => "01.12.2019",
         "category" => "Работа",
         "status" => false
     ],
@@ -53,6 +53,18 @@ function count_projects($task_list, $categories) {
     }
     return $number;
 }
+
+date_default_timezone_set('Europe/Moscow');
+
+function dateDifference ($datetask, $format = '%h')
+{
+    $date = date_create($datetask);
+    $curdate = date_create('now');
+    $interval = date_diff($date, $curdate);
+    return $interval->format($format);
+}
+
+
 
 $page_content = include_template('index.php', ["show_complete_tasks" => $show_complete_tasks, "task_list" => $task_list]);
 $layout_content = include_template('layout.php', [
