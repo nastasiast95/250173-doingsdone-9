@@ -1,5 +1,6 @@
 <?php
 require_once('./helpers.php');
+require_once('./functions.php');
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 $categories = ["Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
@@ -9,7 +10,7 @@ $username = "Анастасия";
 $task_list = [
     [
         "task" => "Собеседование в IT компании",
-        "date" => "01.12.2019",
+        "date" => "07.05.2019",
         "category" => "Работа",
         "status" => false
     ],
@@ -44,25 +45,6 @@ $task_list = [
         "status" => false
     ]
 ];
-function count_projects($task_list, $categories) {
-    $number = 0;
-    foreach ($task_list as $value) {
-        if ($value ["category"] === $categories) {
-            $number++;
-        }
-    }
-    return $number;
-}
-
-date_default_timezone_set('Europe/Moscow');
-
-function dateDifference ($datetask, $format = '%h')
-{
-    $date = date_create($datetask);
-    $curdate = date_create('now');
-    $interval = date_diff($date, $curdate);
-    return $interval->format($format);
-}
 
 
 
@@ -76,5 +58,5 @@ $layout_content = include_template('layout.php', [
     "title" => "Дела в порядке - Главная страница"
 ]);
 print($layout_content);
-?>
+
 
