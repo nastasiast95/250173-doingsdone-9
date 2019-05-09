@@ -25,12 +25,12 @@
     <table class="tasks">
         <?php foreach ($task_list as $value): ?>
             <?php if ($value ["status"] === false) : ?>
-                <tr class="tasks__item task">
+                <tr class="tasks__item task <?=(diff_time($value['date']) ? 'task--important' : '')?>">
                     <td class="task__select">
                         <label class="checkbox task__checkbox">
                             <input class="checkbox__input visually-hidden task__checkbox" type="checkbox"
                                    value="1">
-                            <span class="checkbox__text"><?= $value["task"]; ?></span>
+                            <span class="checkbox__text"><?= htmlspecialchars($value["task"]); ?></span>
                         </label>
                     </td>
                     <td class="task__date"><?= $value["date"]; ?></td>
@@ -42,10 +42,10 @@
                         <label class="checkbox task__checkbox">
                             <input class="checkbox__input visually-hidden task__checkbox" type="checkbox"
                                    value="1">
-                            <span class="checkbox__text"><?= $value["task"]; ?></span>
+                            <span class="checkbox__text"><?= htmlspecialchars($value["task"]); ?></span>
                         </label>
                     </td>
-                    <td class="task__date"><?= $value["date"]; ?></td>
+                    <td class="task__date"><?= htmlspecialchars($value["date"]); ?></td>
                     <td class="task__controls"></td>
                 </tr>
 
