@@ -11,17 +11,13 @@ function count_projects($task_list, $categories) {
 
 date_default_timezone_set('Europe/Moscow');
 
-function diff_time($date1){
-    if ($date1 === '') {
+function diff_time($date) {
+    if (empty($date)) {
         return false;
         }
-    $daytask = strtotime($date1);
+    $daytask = strtotime($date);
     $deadline = strtotime('now');
     $diff = ($daytask - $deadline) / 3600;
 
-    if ($diff <= 24) {
-        return true;
-    } else {
-        return false;
-    }
+    return $diff <= 24;
 }
