@@ -23,17 +23,17 @@
     </div>
 
     <table class="tasks">
-        <?php foreach ($task_list as $value): ?>
-            <?php if ($value ["status"] === false) : ?>
-                <tr class="tasks__item task <?=(diff_time($value['date']) ? 'task--important' : '')?>">
+        <?php foreach ($task_list as $task): ?>
+            <?php if ($task ["status"] == false) : ?>
+                <tr class="tasks__item task <?=(diff_time($task['date_deadline']) ? 'task--important' : '')?>">
                     <td class="task__select">
                         <label class="checkbox task__checkbox">
                             <input class="checkbox__input visually-hidden task__checkbox" type="checkbox"
                                    value="1">
-                            <span class="checkbox__text"><?= htmlspecialchars($value["task"]); ?></span>
+                            <span class="checkbox__text"><?= htmlspecialchars($task["name"]); ?></span>
                         </label>
                     </td>
-                    <td class="task__date"><?= $value["date"]; ?></td>
+                    <td class="task__date"><?= $task["date_deadline"]; ?></td>
                     <td class="task__controls"></td>
                 </tr>
             <?php elseif ($show_complete_tasks === 1): ?>
@@ -42,10 +42,10 @@
                         <label class="checkbox task__checkbox">
                             <input class="checkbox__input visually-hidden task__checkbox" type="checkbox"
                                    value="1">
-                            <span class="checkbox__text"><?= htmlspecialchars($value["task"]); ?></span>
+                            <span class="checkbox__text"><?= htmlspecialchars($task["name"]); ?></span>
                         </label>
                     </td>
-                    <td class="task__date"><?= htmlspecialchars($value["date"]); ?></td>
+                    <td class="task__date"><?= htmlspecialchars($task["date_deadline"]); ?></td>
                     <td class="task__controls"></td>
                 </tr>
 

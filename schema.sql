@@ -15,7 +15,7 @@ CREATE TABLE tasks (
                        name VARCHAR(128) NOT NULL,
                        create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                        date_deadline TIMESTAMP NULL,
-                       date_complete TIMESTAMP NULL,
+                       status BOOLEAN,
                        file VARCHAR(256),
                        user_id INT NOT NULL,
                        project_id INT NOT NULL
