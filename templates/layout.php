@@ -41,8 +41,8 @@
                     <ul class="main-navigation__list">
                         <?php foreach ($categories as $category): ?>
                             <li class="main-navigation__list-item">
-                                <a class="main-navigation__list-item-link" href="#"><?=htmlspecialchars($category); ?></a>
-                                <span class="main-navigation__list-item-count"><?=count_projects($task_list, $category); ?></span>
+                                <a class="main-navigation__list-item-link" href="#"><?=htmlspecialchars($category["name"]); ?></a>
+                                <span class="main-navigation__list-item-count"><?=count_projects($task_list, $category["id"]); ?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>

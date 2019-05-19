@@ -1,13 +1,16 @@
 <?php
 require_once('./helpers.php');
 require_once('./functions.php');
+require_once('./init.php');
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
-$categories = ["Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
+$user_id=2;
+$categories = get_user_projects($user_id, $con);
 $index = 0;
 $num_count = count($categories);
 $username = "Анастасия";
-$task_list = [
+$task_list=get_user_tasks($user_id,$con);
+/*$task_list = [
     [
         "task" => "Собеседование в IT компании",
         "date" => "07.05.2019",
@@ -44,7 +47,7 @@ $task_list = [
         "category" => "Домашние дела",
         "status" => false
     ]
-];
+];*/
 
 
 
