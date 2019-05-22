@@ -23,11 +23,11 @@ VALUES
 ('Фалафель', 'falafel@mail.ru', 'dinosaur');
 
 -- Получить список из всех проектов для пользователя с id 1
-SELECT * FROM projects
+SELECT name, user_id FROM projects
 WHERE user_id = 1;
 
 -- Получить список из всех задач для проекта с id 3
-SELECT * FROM tasks
+SELECT name, date_deadline, status, user_id, project_id FROM tasks
 WHERE project_id = 3;
 
 -- Пометить задачу с id 6 как выполненную

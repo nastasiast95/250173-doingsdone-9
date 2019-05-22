@@ -2,6 +2,7 @@
 require_once('./helpers.php');
 require_once('./functions.php');
 require_once('./init.php');
+require_once('./db_functions.php');
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 $user_id=2;
@@ -10,6 +11,19 @@ $index = 0;
 $num_count = count($categories);
 $username = "Анастасия";
 $task_list=get_user_tasks($user_id,$con);
+$active_category=null;
+
+if (isset($_GET["project_id"])&&($_GET["project_id"]!=="")) {
+    $active_category = $_GET["project_id"];
+    $task_list=get_tasks_by_id($user_id,$active_category,$con);
+
+    if(!$task_list){
+        http_response_code(404);
+        die();
+    }
+}
+
+
 /*$task_list = [
     [
         "task" => "Собеседование в IT компании",
@@ -58,8 +72,10 @@ $layout_content = include_template('layout.php', [
     "num_count"=>$num_count,
     "task_list" => $task_list,
     "username" => $username,
-    "title" => "Дела в порядке - Главная страница"
+    "title" => "Дела в порядке - Главная страница",
+    "active_category"=>$active_category
 ]);
 print($layout_content);
+
 
 

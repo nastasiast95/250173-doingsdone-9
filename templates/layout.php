@@ -40,9 +40,9 @@
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
                         <?php foreach ($categories as $category): ?>
-                            <li class="main-navigation__list-item">
-                                <a class="main-navigation__list-item-link" href="#"><?=htmlspecialchars($category["name"]); ?></a>
-                                <span class="main-navigation__list-item-count"><?=count_projects($task_list, $category["id"]); ?></span>
+                            <li class="main-navigation__list-item  <?= $category["id"] === $active_category ? "main-navigation__list-item--active" : "" ?>">
+                                <a class="main-navigation__list-item-link" href="/?project_id=<?= $category["id"]?>"><?=htmlspecialchars($category["name"]); ?></a>
+                                <span class="main-navigation__list-item-count"><?=$category["task_count"] ?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
